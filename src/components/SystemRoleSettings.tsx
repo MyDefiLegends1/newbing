@@ -52,8 +52,8 @@ export default (props: Props) => {
           <div>
             <textarea
               ref={systemInputRef!}
-              placeholder="You are a helpful assistant, answer as concisely as possible...."
-              autocomplete="off"
+              placeholder="You are a helpful assistant your name is Bing, answer as concisely as possible...."
+              autocomplete="on"
               autofocus
               rows="3"
               gen-textarea
