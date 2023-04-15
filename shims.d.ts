@@ -13,4 +13,9 @@ declare global {
   namespace JSX {
     interface HTMLAttributes<> extends AttributifyAttributes {}
   }
+  declare const adsbygoogle: any
+
+  // Now you can use 'adsbygoogle' in your code
+  // For example:
+  adsbygoogle.push({})
 }
