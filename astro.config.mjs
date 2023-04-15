@@ -21,6 +21,13 @@ const envAdapter = () => {
 }
 
 // https://astro.build/config
+export default {
+  // other configuration options
+  scripts: [
+    // other scripts
+    { type: 'module', src: '/src/global.d.ts' }, // Include global.d.ts file
+  ],
+
 export default defineConfig({
   integrations: [
     unocss(),
@@ -70,3 +77,4 @@ export default defineConfig({
     ],
   },
 })
+}
