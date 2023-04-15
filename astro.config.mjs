@@ -58,10 +58,6 @@ export default defineConfig({
               type: 'image/svg',
               purpose: 'any maskable',
             },
-            {
-              src: '/src/global.d.ts',
-              type: 'module',
-            },
           ],
         },
         client: {
