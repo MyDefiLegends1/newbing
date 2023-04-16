@@ -36,7 +36,7 @@ export default defineConfig({
       process.env.OUTPUT !== 'netlify' && VitePWA({
         registerType: 'autoUpdate',
         manifest: {
-          name: 'BingBLong GPT',
+          name: 'BingBlong GPT',
           short_name: 'BingGPT',
           description: 'The AI for everyjuan',
           theme_color: '#212129',
