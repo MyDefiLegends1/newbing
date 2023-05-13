@@ -21,7 +21,7 @@ jobs:
       with:
         server: 194.163.35.217
         hostname: play-aspect.com
-        username: ${{ secrets.ftp_username }}
+        username: u915380134.bingblong.com
         password: ${{ secrets.ftp_password }}
         server-dir: /public_html/new
 
