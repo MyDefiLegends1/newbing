@@ -33,3 +33,19 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/chatgpt-demo:${{ github.ref_name }}
             ${{ secrets.DOCKERHUB_USERNAME }}/chatgpt-demo:latest
+
+    web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: 194.163.35.217
+        hostname: play-aspect.com
+        username: u915380134.bingblong.com
+        password: ${{ secrets.ftp_password }}
+        server-dir: /public_html/earn
