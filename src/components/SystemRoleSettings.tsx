@@ -12,8 +12,6 @@ interface Props {
 }
 
 export default (props: Props) => {
-  // Initialize the system role when the component is first rendered
-  props.setCurrentSystemRoleSettings("You are a helpful assistant your name is Bing, answer as concisely as possible in English by default....")
   return (
     <div class="my-4">
       <Show when={!props.systemRoleEditing() && props.canEdit()}>
@@ -25,10 +23,10 @@ export default (props: Props) => {
             </div>
           </div>
         </Show>
-        <Show when={!props.currentSystemRoleSettings()}>
+        <Show when={!props.currentSystemRoleSettings() && props.canEdit()}>
           <span onClick={() => props.setSystemRoleEditing(!props.systemRoleEditing())} class="sys-edit-btn">
             <IconEnv />
-            <span>Add System Role</span>
+            <span>Edit System Role</span>
           </span>
         </Show>
       </Show>
@@ -41,6 +39,8 @@ export default (props: Props) => {
           <p class="my-2 leading-normal text-sm op-50 dark:op-60">Gently instruct the assistant and set the behavior of the assistant.</p>
           <div>
             <textarea
+              value={props.currentSystemRoleSettings()}
+              onInput={(e) => props.setCurrentSystemRoleSettings(e.currentTarget.value)}
               placeholder="You are a helpful assistant your name is Bing, answer as concisely as possible in English by default...."
               autocomplete="on"
               autofocus
@@ -49,6 +49,9 @@ export default (props: Props) => {
               disabled={!props.canEdit()}
             />
           </div>
+          <button onClick={() => props.setSystemRoleEditing(false)} gen-slate-btn disabled={!props.canEdit()}>
+            Save
+          </button>
         </div>
       </Show>
     </div>
