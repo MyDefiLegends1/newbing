@@ -12,21 +12,30 @@ interface Props {
 }
 
 export default (props: Props) => {
-  // Initialize the system role when the component is first rendered
-  props.setCurrentSystemRoleSettings("You are a helpful assistant your name is Bing, answer as concisely as possible in English by default....");
+  let systemInputRef: HTMLTextAreaElement
+
+  const handleButtonClick = () => {
+    props.setCurrentSystemRoleSettings(systemInputRef.value)
+    props.setSystemRoleEditing(false)
+  }
 
   return (
     <div class="my-4">
-      <Show when={!props.systemRoleEditing() && props.canEdit()}>
+      <Show when={!props.systemRoleEditing()}>
         <Show when={props.currentSystemRoleSettings()}>
           <div>
             <div class="fi gap-1 op-50 dark:op-60">
-              <span onClick={() => props.setCurrentSystemRoleSettings('')} class="sys-edit-btn p-1 rd-50%" > <IconX /> </span>
-              <span>System Role: {props.currentSystemRoleSettings()}</span>
+              <Show when={props.canEdit()} fallback={<IconEnv />}>
+                <span onClick={() => props.setCurrentSystemRoleSettings('')} class="sys-edit-btn p-1 rd-50%" > <IconX /> </span>
+              </Show>
+              <span>Answering in Chinese? </span>
+            </div>
+            <div class="mt-1">
+              {props.currentSystemRoleSettings()}
             </div>
           </div>
         </Show>
-        <Show when={!props.currentSystemRoleSettings()}>
+        <Show when={!props.currentSystemRoleSettings() && props.canEdit()}>
           <span onClick={() => props.setSystemRoleEditing(!props.systemRoleEditing())} class="sys-edit-btn">
             <IconEnv />
             <span>Add System Role</span>
@@ -42,14 +51,17 @@ export default (props: Props) => {
           <p class="my-2 leading-normal text-sm op-50 dark:op-60">Gently instruct the assistant and set the behavior of the assistant.</p>
           <div>
             <textarea
-              placeholder="You are a helpful assistant your name is Bing, answer as concisely as possible in English by default...."
-              autocomplete="on"
+              ref={systemInputRef!}
+              placeholder="You are a helpful assistant, answer as concisely as possible...."
+              autocomplete="off"
               autofocus
               rows="3"
               gen-textarea
-              disabled={!props.canEdit()}
             />
           </div>
+          <button onClick={handleButtonClick} gen-slate-btn>
+            Set
+          </button>
         </div>
       </Show>
     </div>
