@@ -9,7 +9,13 @@ import type { ChatMessage, ErrorMessage } from '@/types'
 
 export default () => {
   let inputRef: HTMLTextAreaElement
-  const [currentSystemRoleSettings, setCurrentSystemRoleSettings] = createSignal('Search/Go to ask.bingblong.com')
+  const [currentSystemRoleSettings, setCurrentSystemRoleSettings] = createSignal(<a
+    b-slate-link
+    href="https://app.bingblong.com" target="_blank"
+    style="background-image: linear-gradient(to right, #22c3d1, #0fbf8c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+  >
+    Go to app.bingblong.com or click here
+  </a>)
   const [systemRoleEditing, setSystemRoleEditing] = createSignal(false)
   const [messageList, setMessageList] = createSignal<ChatMessage[]>([])
   const [currentError, setCurrentError] = createSignal<ErrorMessage>()
