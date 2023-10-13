@@ -9,7 +9,7 @@ import type { ChatMessage, ErrorMessage } from '@/types'
 
 export default () => {
   let inputRef: HTMLTextAreaElement
-  const [currentSystemRoleSettings, setCurrentSystemRoleSettings] = createSignal('Chat "I said answer in english only!" 2x')
+  const [currentSystemRoleSettings, setCurrentSystemRoleSettings] = createSignal('Search/Go to ask.bingblong.com')
   const [systemRoleEditing, setSystemRoleEditing] = createSignal(false)
   const [messageList, setMessageList] = createSignal<ChatMessage[]>([])
   const [currentError, setCurrentError] = createSignal<ErrorMessage>()
